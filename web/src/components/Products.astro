@@ -1,0 +1,26 @@
+---
+import { url } from "../lib/paths";
+import { CATEGORIES, ALL_PRODUCTS, FEATURED, productImage } from "../data/products";
+import Stage from "./Stage.astro";
+const pad = (x: number) => String(x).padStart(2, "0");
+---
+<section id="productos" class="products" data-header="light">
+  <header class="products__intro" data-section="intro">
+    <p class="eyebrow">[Catálogo mayorista · 2026]</p>
+    <h2 class="products__title">Lo que sale de la cocina.</h2>
+    <p class="products__sub">Algunos destacados. Hay {ALL_PRODUCTS.length} productos en {CATEGORIES.length} categorías.</p>
+  </header>
+  <Stage id="destacados" name="Destacados" productos={FEATURED} />
+  <div class="products__more" data-section="intro">
+    <nav class="cat-index" aria-label="Categorías de productos">
+      {CATEGORIES.map((c) => (
+        <a class="cat-index__item" href={url(`/productos#cat-${c.slug}`)}>
+          <img src={productImage(c.productos[0], "sm")} alt="" width="520" height="520" loading="lazy" decoding="async" />
+          <span class="cat-index__name">.{c.nombre}</span>
+          <span class="cat-index__count">{pad(c.productos.length)}</span>
+        </a>
+      ))}
+    </nav>
+    <a class="crc products__all" href={url("/productos")}>Ver los {ALL_PRODUCTS.length} productos <span class="arr" aria-hidden="true">→</span></a>
+  </div>
+</section>

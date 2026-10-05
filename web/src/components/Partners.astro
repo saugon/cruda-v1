@@ -1,0 +1,24 @@
+---
+import { url } from "../lib/paths";
+// Lista de la ficha "Nuestros partners" del catálogo, con la estética de etiqueta del packaging.
+import { PARTNERS } from "../data/products";
+---
+<section class="partners" data-header="blue" data-section="partners" aria-labelledby="partners-title">
+  <h2 id="partners-title" class="partners__title">Alimentamos la escena.</h2>
+  <div class="sheet">
+    <div class="sheet__row sheet__row--top">
+      <span>[Nuestros partners]</span>
+      <span class="sheet__center">Urban bakery</span>
+      <span class="sheet__right">Actualización 2026</span>
+    </div>
+    <ul class="sheet__list">
+      {PARTNERS.map((name) => <li>{name}</li>)}
+      <li class="sheet__more">Entre otros…</li>
+    </ul>
+    <div class="sheet__row sheet__row--bottom">
+      <span>www.crudahaus.com.ar</span>
+      <img class="sheet__galgo" src={url("/assets/logos/galgo-offwhite.svg")} alt="" width="973" height="731" loading="lazy" aria-hidden="true" />
+      <span class="sheet__right">B.A.</span>
+    </div>
+  </div>
+</section>

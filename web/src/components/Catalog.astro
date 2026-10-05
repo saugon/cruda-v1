@@ -1,0 +1,33 @@
+---
+import { CATEGORIES, ALL_PRODUCTS, SEALED_COUNT } from "../data/products";
+import Ficha from "./Ficha.astro";
+const pad = (x: number) => String(x).padStart(2, "0");
+---
+<section class="catalog" data-header="light">
+  <header class="catalog__intro">
+    <p class="eyebrow">[Catálogo mayorista · Actualización 2026]</p>
+    <h1 class="products__title">Todos los productos.</h1>
+    <ul class="products__stats">
+      <li><b>{ALL_PRODUCTS.length}</b>productos</li>
+      <li><b>{CATEGORIES.length}</b>categorías</li>
+      <li><b>{SEALED_COUNT}</b>con sello sin conservantes</li>
+    </ul>
+    <nav class="catalog__nav" aria-label="Categorías">
+      {CATEGORIES.map((c) => (
+        <a href={`#cat-${c.slug}`}>.{c.nombre} <span>{pad(c.productos.length)}</span></a>
+      ))}
+    </nav>
+  </header>
+  {CATEGORIES.map((c) => (
+    <section class="cat-block" id={`cat-${c.slug}`} data-section="catgrid" aria-labelledby={`cat-${c.slug}-title`}>
+      <div class="cat__opener">
+        <div class="cat__pattern" aria-hidden="true"></div>
+        <h2 class="cat__label" id={`cat-${c.slug}-title`}>.{c.nombre}</h2>
+        <p class="cat__meta">{pad(c.productos.length)} productos</p>
+      </div>
+      <ol class="fichas fichas--grid">
+        {c.productos.map((p) => <Ficha p={p} level="h3" />)}
+      </ol>
+    </section>
+  ))}
+</section>

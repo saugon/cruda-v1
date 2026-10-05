@@ -1,0 +1,11 @@
+.DS_Store
+node_modules/
+dist/
+.astro/
+
+# Material de marca: pesa ~1 GB, tiene archivos de más de 100 MB (el límite de GitHub)
+# y las fuentes SF Pro Rounded no se pueden redistribuir. El sitio usa sus conversiones en web/public.
+resouces/
+
+# lockfile vacío de un npm install en la raíz (el proyecto está en web/)
+/package-lock.json

@@ -1,0 +1,40 @@
+---
+import { url, BASE } from "../lib/paths";
+// Manifiesto del poster / Toolkit, frase por frase. Cada frase va con una foto o mockup de marca.
+const phrases = [
+  "Hacemos masa con bacteria viva, no con ideas muertas.",
+  "Alimentamos la escena.",
+  "Viscerales, crudos, reales.",
+  "Somos los nuevos con hambre de expansión.",
+  "La cocina es nuestro templo. El pan, una excusa.",
+  "No encajamos. Contagiamos.",
+];
+const photos = [
+  { src: "manos-crudas", alt: "Manos con harina sobre la mesada", w: 1080, h: 1350 },
+  { src: "pibe-batch-bagels", alt: "Bandeja de bagels crudos", w: 1080, h: 1350 },
+  { src: "manteca", alt: "Manteca con el logo de Cruda Haus marcado", w: 1080, h: 1350 },
+  { src: "pack-de-pan", alt: "Pack de pan de Cruda Haus", w: 1920, h: 1080 },
+  { src: "magazine", alt: "Revista de Cruda Haus", w: 2000, h: 3000 },
+  { src: "envoltorios-2", alt: "Panes envueltos en el papel de Cruda Haus", w: 1080, h: 1350 },
+];
+---
+<section id="quienes" class="about" data-header="light" data-section="about">
+  <div class="about__pin">
+    <img class="about__logo" src={url("/assets/logos/gotico-proveeduria-rojo.svg")} alt="Cruda Haus [Proveeduría]" width="1656" height="360" loading="lazy" />
+    <p class="eyebrow about__eyebrow">[Quiénes somos]</p>
+    <ol class="about__phrases">
+      {phrases.map((t, i) => (
+        <li class={`about__phrase${i === phrases.length - 1 ? " about__phrase--punch" : ""}`}>{t}</li>
+      ))}
+    </ol>
+    <div class="about__photos">
+      {photos.map((ph, i) => (
+        <figure class={`about__photo about__photo--${i % 2 ? "r" : "l"}`}>
+          <img src={`${BASE}/assets/fotos/${ph.src}.webp`} srcset={`${BASE}/assets/fotos/${ph.src}-sm.webp 800w, ${BASE}/assets/fotos/${ph.src}.webp 1600w`} sizes="(min-width: 900px) 22vw, 50vw" alt={ph.alt} width={ph.w} height={ph.h} loading="lazy" decoding="async" />
+        </figure>
+      ))}
+    </div>
+    <p class="about__foot">Urban bakery</p>
+    <img class="about__galgo" src={url("/assets/logos/galgo-azul.svg")} alt="" width="973" height="731" loading="lazy" aria-hidden="true" />
+  </div>
+</section>

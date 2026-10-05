@@ -1,0 +1,3 @@
+M PLUS Rounded 1c — Copyright 2016 The Rounded M+ Project Authors (Coji Morishita, M+ Fonts Project)
+Licencia: SIL Open Font License 1.1 (https://openfontlicense.org)
+Fuente: Google Fonts (subset latin, woff2)

@@ -1,0 +1,21 @@
+---
+import { url } from "../lib/paths";
+import { CONTACT, whatsappUrl, instagramUrl } from "../config";
+import WhatsAppIcon from "./WhatsAppIcon.astro";
+---
+<section id="contacto" class="closing" data-header="light" data-section="closing">
+  <div class="closing__inner">
+    <div class="closing__card" aria-hidden="true">
+      <img class="closing__card-logo" src={url("/assets/logos/gotico-proveeduria-rojo.svg")} alt="" width="1656" height="360" loading="lazy" />
+      <img class="closing__card-galgo" src={url("/assets/logos/galgo-azul.svg")} alt="" width="973" height="731" loading="lazy" />
+      <div class="closing__card-foot"><span>www.crudahaus.com.ar</span><span>Urban bakery</span><span>@{CONTACT.instagramUser}</span></div>
+    </div>
+    <div class="closing__copy">
+      <h2>Sumate a la escena.</h2>
+      <div class="closing__actions">
+        <a class="btn btn--big" href={whatsappUrl()} target="_blank" rel="noopener"><WhatsAppIcon />Escribinos por WhatsApp</a>
+        <a class="crc" href={instagramUrl()} target="_blank" rel="noopener">Instagram @{CONTACT.instagramUser}</a>
+      </div>
+    </div>
+  </div>
+</section>

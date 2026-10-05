@@ -1,0 +1,42 @@
+---
+import { url } from "../lib/paths";
+import { whatsappUrl } from "../config";
+import { ALL_PRODUCTS, productImage, productSrcset } from "../data/products";
+const bySlug = (s: string) => ALL_PRODUCTS.find((p) => p.slug === s)!;
+const main = bySlug("croissant");
+const floats = [
+  { cls: "a", p: bySlug("pan-de-chocolate") },
+  { cls: "b", p: bySlug("chipa-clasico") },
+  { cls: "c", p: bySlug("cookie-pistacho") },
+  { cls: "d", p: bySlug("pan-de-campo") },
+];
+---
+<section id="inicio" class="hero" data-header="blue" data-section="hero">
+  <div class="hero__pin">
+    <div class="hero__logo">
+      <img class="hero__logo-img" src={url("/assets/logos/gotico-proveeduria-offwhite-fx.webp")} alt="Cruda Haus [Proveeduría]" width="1600" height="348" fetchpriority="high" />
+    </div>
+    <div class="hero__stage" aria-hidden="true">
+      {floats.map(({ cls, p }) => (
+        <div class={`hero__float hero__float--${cls}`}>
+          <img class="hero__float-img" src={productImage(p, "sm")} alt="" width="520" height="520" decoding="async" />
+        </div>
+      ))}
+      <div class="hero__product">
+        <img class="hero__product-img" src={productImage(main)} srcset={productSrcset(main)} sizes="(min-width: 900px) 900px, 118vw" alt="" width="900" height="900" fetchpriority="high" />
+      </div>
+    </div>
+    <h1 class="hero__title">
+      <span class="hero__line">Proveeduría bruta.</span>
+      <span class="hero__line">Panadería urbana.</span>
+      <span class="hero__line">Espacio de culto.</span>
+    </h1>
+    <div class="hero__label">
+      <span class="hero__rule" aria-hidden="true"></span>
+      <p class="hero__lead">Fábrica y proveeduría mayorista de panadería y pastelería artesanal.</p>
+      <p class="hero__mid">Urban bakery</p>
+      <a class="btn hero__cta" href={whatsappUrl()} target="_blank" rel="noopener">Quiero ser cliente</a>
+    </div>
+    <p class="hero__hint" aria-hidden="true">Scrolleá</p>
+  </div>
+</section>

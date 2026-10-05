@@ -1,0 +1,48 @@
+---
+import type { Product } from "../data/products";
+import { productImage, productSrcset, hasSeal } from "../data/products";
+interface Props { p: Product; level?: "h3" | "h4" }
+const { p, level = "h4" } = Astro.props;
+const Name = level;
+const hasLine = Boolean(p.peso || p.texto);
+---
+<li class="ficha" id={`producto-${p.slug}`}>
+  <figure class="ficha__photo">
+    <div class="ficha__spin">
+      <img src={productImage(p)} srcset={productSrcset(p)} sizes="(min-width: 900px) 46vw, 84vw" alt={p.nombre} width="900" height="900" loading="lazy" decoding="async" />
+    </div>
+    {p.medida && <span class="ficha__medida">{p.medida}</span>}
+  </figure>
+  <div class="ficha__info">
+    <Name class="ficha__name"><span>{p.nombre}</span></Name>
+    <p class="ficha__cat">{p.etiqueta}</p>
+    {/* Como en la ficha del PDF: si no hay datos, la línea lleva "..." */}
+    <p class="ficha__line">
+      {hasLine ? (
+        <span>
+          {p.peso && <><span class="ficha__peso">{p.peso}</span> peso aproximado.{p.texto ? " " : ""}</>}
+          {p.texto}
+        </span>
+      ) : <span aria-hidden="true">...</span>}
+    </p>
+    <div class="ficha__lote">
+      <div class="ficha__lot">
+        <span class="ficha__lot-cell"><span class="k">Batch:</span> 00</span>
+        <span class="ficha__lot-cell"><span class="k">Fecha:</span> / 2026</span>
+      </div>
+      <div class="ficha__marks">
+        {p.vegano && (
+          <span class="vegano" role="img" aria-label="100% vegano">
+            <svg viewBox="0 0 40 28" aria-hidden="true">
+              <path d="M3 26C2 14 9 5 22 3c-3 9-7 17-19 23Z" fill="#90b74b" />
+              <path d="M12 27c2-10 10-17 25-18-4 10-12 17-25 18Z" fill="#aad15d" />
+              <path d="M4 25C9 17 13 12 19 7M13 26c7-6 13-10 21-14" stroke="#f9f7f4" stroke-width="1.4" fill="none" stroke-linecap="round" />
+            </svg>
+            <span class="vegano__txt"><b>100%</b><small>vegano</small></span>
+          </span>
+        )}
+        {hasSeal(p) && <span class="seal" role="img" aria-label="Sin conservantes"><b>Sin</b><small>conservantes</small></span>}
+      </div>
+    </div>
+  </div>
+</li>

@@ -1,0 +1,49 @@
+---
+import { url } from "../lib/paths";
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+interface Props { title: string; description: string }
+const { title, description } = Astro.props;
+---
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0212EE" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/png" href={url("/favicon.png")} />
+    <link rel="apple-touch-icon" href={url("/apple-touch-icon.png")} />
+    <link rel="preload" href={url("/fonts/mplus-rounded-1c-800.woff2")} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={url("/fonts/mplus-rounded-1c-500.woff2")} as="font" type="font/woff2" crossorigin />
+    <script is:inline>
+      // Arranque: si hay movimiento, el hero toma su layout animado desde el primer pintado.
+      // Si el JS de animación no arranca en 4 s, se vuelve al layout estático.
+      (function () {
+        var d = document.documentElement;
+        if (window.matchMedia && matchMedia("(prefers-reduced-motion: no-preference) and (min-height: 520px)").matches) {
+          d.setAttribute("data-motion-boot", "");
+          setTimeout(function () { if (!window.__chMotion) d.removeAttribute("data-motion-boot"); }, 4000);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      import "../scripts/header.ts";
+    </script>
+    <script>
+      import "../scripts/motion.ts";
+    </script>
+  </body>
+</html>

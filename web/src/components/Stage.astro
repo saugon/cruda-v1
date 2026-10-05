@@ -1,0 +1,28 @@
+---
+// Escenario fijo con la "rueda" de productos (la arma motion.ts). Sin JS es una grilla de fichas.
+import type { Product } from "../data/products";
+import { productImage } from "../data/products";
+import Ficha from "./Ficha.astro";
+interface Props { id: string; name: string; productos: Product[] }
+const { id, name, productos } = Astro.props;
+const n = productos.length;
+const pad = (x: number) => String(x).padStart(2, "0");
+---
+<section class="cat" id={id} data-header="light" data-section="cat" aria-labelledby={`${id}-title`}>
+  <div class="cat__stage">
+    <div class="cat__head">
+      <h3 id={`${id}-title`}>.{name}</h3>
+      <span class="cat__counter" aria-hidden="true"><span data-counter>01</span> / {pad(n)}</span>
+    </div>
+    <ol class="fichas">
+      {productos.map((p) => <Ficha p={p} />)}
+    </ol>
+    <div class="cat__thumbs" aria-hidden="true">
+      {productos.map((p, i) => (
+        <button class="cat__thumb" type="button" tabindex="-1" data-index={i}>
+          <img src={productImage(p, "sm")} alt="" width="520" height="520" loading="lazy" decoding="async" />
+        </button>
+      ))}
+    </div>
+  </div>
+</section>

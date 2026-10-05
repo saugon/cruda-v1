@@ -1,0 +1,17 @@
+---
+import { url } from "../lib/paths";
+import { whatsappUrl } from "../config";
+---
+<header class="site-header" data-theme="light">
+  <a class="site-header__brand" href={url("/")} aria-label="Cruda Haus, inicio">
+    <img class="logo-on-light" src={url("/assets/logos/institucional-azul.svg")} alt="" width="1687" height="379" />
+    <img class="logo-on-dark" src={url("/assets/logos/institucional-offwhite.svg")} alt="" width="1687" height="379" />
+  </a>
+  <nav class="site-header__nav" aria-label="Secciones">
+    <a href={url("/#quienes")}>Quiénes somos</a>
+    <a href={url("/#que-hacemos")}>Qué hacemos</a>
+    <a href={url("/productos")}>Productos</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+  <a class="btn" href={whatsappUrl()} target="_blank" rel="noopener">Escribinos</a>
+</header>

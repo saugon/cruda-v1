@@ -1,0 +1,18 @@
+---
+import { url } from "../lib/paths";
+import { CONTACT, whatsappUrl, instagramUrl } from "../config";
+---
+<footer class="site-footer" data-header="black">
+  <div>
+    <img class="site-footer__logo" src={url("/assets/logos/sello-deli-offwhite.svg")} alt="Cruda Haus [Proveeduría]" width="1657" height="430" loading="lazy" />
+    <p class="site-footer__claim">Proveeduría bruta. Panadería urbana. Espacio de culto.</p>
+  </div>
+  <div>
+    <ul class="site-footer__links">
+      <li><a href={whatsappUrl()} target="_blank" rel="noopener">WhatsApp</a></li>
+      <li><a href={instagramUrl()} target="_blank" rel="noopener">Instagram @{CONTACT.instagramUser}</a></li>
+      <li><a href={url("/productos")}>Productos</a></li>
+    </ul>
+    <p class="site-footer__small">www.crudahaus.com.ar · B.A. · © 2026 Cruda Haus</p>
+  </div>
+</footer>
